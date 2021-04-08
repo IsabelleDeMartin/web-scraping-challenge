@@ -4,8 +4,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import time
 
-
 # ## title paragraph
+
 
 def scrape_img():
     executable_path = {'executable_path': ChromeDriverManager().install()}
