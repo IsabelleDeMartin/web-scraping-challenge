@@ -12,6 +12,7 @@ def scrape_img():
     browser = Browser('chrome', **executable_path, headless=True)
     url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
     browser.visit(url)
+    time.sleep(5)
     button_click = browser.find_by_tag("button")[1]
     button_click.click()
     html = browser.html
@@ -23,9 +24,10 @@ def scrape_img():
 
 
 def scrape_facts():
-    url = 'https://space-facts.com/mars/'
-    tables = pd.read_html(url)
-    df = tables[0]
+    url = 'https://galaxyfacts-mars.com'
+    df = pd.read_html(url)[0]
+    df.columns = ["Description", "Mars", "Earth"]
+    df.set_index("Description", inplace=True)
     return df.to_html(classes="table table-striped")
 
 
